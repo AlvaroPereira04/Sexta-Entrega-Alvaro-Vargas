@@ -1,0 +1,36 @@
+[
+    {
+      "name": "Alvaro",
+      "lastName": "Vargas",
+      "age": 30,
+      "address": "Washington Beltran, Montevideo.",
+      "e-mail": "alvaro40992@gmail.com",
+      "genero": "masculino",
+      "password": "pereira041992",
+      "id": 1
+    },
+    {
+      "name": "Ana Paula",
+      "lastName": "Martinez",
+      "age": 27,
+      "address": "Washington Beltran, Montevideo.",
+      "e-mail": "anamartinezot17@gmail.com",
+      "genero": "femenino",
+      "pass": "pereira041992",
+      "id": 2,
+      "salt": "",
+      "password": ""
+    },
+    {
+      "name": "Rosario",
+      "lastName": "Pereira",
+      "age": 60,
+      "address": "Avenida Italia, Rivera",
+      "e-mail": "maderopl@hotmail.com",
+      "genero": "femenino",
+      "pass": "pereira041992",
+      "id": 3,
+      "salt": "",
+      "password": ""
+    }
+  ]
