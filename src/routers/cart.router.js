@@ -1,6 +1,6 @@
 const {Router} = require ('express')
-const CartManager = require('../controllers/cartsManager')
-const ProductManager = require('../controllers/productsManager.js')
+const CartManager = require('../dao/fileSystem/cartsManager')
+const ProductManager = require('../dao/fileSystem/productsManager')
 const { dirname } = require('path')
 
 

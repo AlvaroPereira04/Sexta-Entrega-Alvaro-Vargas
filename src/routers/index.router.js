@@ -1,8 +1,8 @@
 const {Router}  = require ('express')
-const products = require ('../routers/products.router.js')
+const products = require ('./products.router')
 const carts = require ('./cart.router')
-const users =  require('./users.router.js')
-const imgMulter = require('./multer.router.js')
+const users =  require('./users.router')
+const imgMulter = require('./multer.router')
 
 const router = Router()
 

@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const  {uploader} = require('../utils/multer')
-const ProductManager = require('../controllers/productsManager')
+const ProductManager = require('../dao/fileSystem/productsManager')
 const { dirname } = require('path')
 
 
@@ -45,7 +45,6 @@ router.post("/", async (req, res) => {
         !addedProduct
         ? res.status(400).send({ error: "Could not add product" })
         : res.status(201).send({status:'success', payload: product})
-        // : res.status(201).send({status: 'success', payload: redirectHtml })
     } catch (error) {
         return {status: 'error', error}
     }

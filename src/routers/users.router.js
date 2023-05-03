@@ -1,93 +1,58 @@
-const {Router} = require('express')
-const  {uploader} = require('../utils/multer')
-const ProductManager = require('../controllers/productsManager')
+const { Router } = require('express')
+const UserManager = require('../dao/fileSystem/usersManager')
 const { dirname } = require('path')
 
-
 const router = Router()
-const productsList = new ProductManager(`${dirname(__dirname)}/db/products.json`)
-const notFound = { status: 'error', error: "Product not found" }
+const usersList = new UserManager(`${ dirname(__dirname) }/db/users.json`)
 
-/* ok: 200
-    created: 201
-    no content: 204
-    bad request: 400
-    forbidden: 403
-    not found: 404
-    internal server error: 500
-    */
-
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const limit = req.query.limit
-        const products = await productsList.getProducts(limit)
-        res.status(200).send({ status:'success', payload: products })
+        const users = await usersList.getUsers()
+        console.log(users);
+        res.send(users)
     } catch (error) {
-        return []
+        console.log(error);
     }
 })
-router.get("/:pid", async (req, res) => {
+router.get("/:uid", async (req, res) => {
     try {
-        const { pid } = req.params
-        const product = await productsList.getProductById(parseInt(pid))
-        !product ?
-        res.status(404).send( notFound )
+        const { uid } = req.params
+        const user = await usersList.getUserById(parseInt(uid))
+        !user ?
+        res.status(404).send({ status: 'error', message: 'User not found' })
         :
-        res.status(200).send({ status:'success', payload: product })
+        res.status(200).send({ status:'success', payload: user })
     } catch (error) {
-        return notFound
+        return { status:'error', message: 'Not found' }
     }
 })
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const product = req.body
-        const addedProduct = await productsList.addProduct(product)
-        !addedProduct
-        ? res.status(400).send({ error: "Could not add product" })
-        : res.status(201).send({status:'success', payload: product})
-        // : res.status(201).send({status: 'success', payload: redirectHtml })
+        const user = req.body
+        const newUser = await usersList.createUser(user)
+        !newUser
+        ? res.status(400).send({ status: 'error', error: 'Could not add user' })
+        : res.status(201).send({ status: 'succes', payload: user})
     } catch (error) {
         return {status: 'error', error}
     }
 })
-router.put("/:pid", async (req, res) => {
+router.put("/:uid", async (req, res) => {
     try {
-        const { pid } = req.params
+        const { uid } = req.params
         const modification = req.body
-        const modifiedProduct = await productsList.updateProduct(
-        parseInt(pid),
+        const modifiedUser = await usersList.updateUser(
+        parseInt(uid),
         modification
         )
-        !modifiedProduct
+        !modifiedUser
         ? res.status(400).send({ error: `Could not modify product` })
-        : res.status(200).send({ status:'success', payload: modifiedProduct })
-    } catch (error) {
-        return {notFound}
-    }
-})
-router.delete("/:pid", async (req, res) => {
-    try {
-        const { pid } = req.params;
-        const removedProduct = await productsList.deleteById(parseInt(pid))
-        !removedProduct
-        ? res.status(200).send({ status:'success', message:'product removed' })
-        : res.status(404).send(notFound)
+        : res.status(200).send({ status:'success', payload: modifiedUser })
     } catch (error) {
         return {status: 'error', error}
     }
 })
-//  form desde el front
-router.post('/formulario', uploader.single('thumbnail'), async (req, res) => {
-    try {
-        const product = req.body
-        const imagePath = req.file.path
-        const imageName = req.file.filename
-        const addedProduct = await productsList.addProduct(product, imagePath)
-        !addedProduct
-        ? res.status(400).send({ error: "Could not add product" })
-        : res.status(201).send({status:'success', payload: addedProduct})
-    } catch (error) {
-        return {status: 'error', error}
-    }
-})
+
+
+
 module.exports = router

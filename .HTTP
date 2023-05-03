@@ -1,0 +1,66 @@
+### GET A USERS MONGO
+GET   http://localhost:8080/api/usersMongo
+
+### GET A PRODUCTS MONGO
+GET http://localhost:8080/api/productsMongo
+
+### GET A USER MONGO
+GET http://localhost:8080/api/usersMongo/64507de55b25082d75475e80
+
+### GET A PRODUCT MONGO
+GET http://localhost:8080/api/productsMongo
+
+### POST A USER MONGO
+POST http://localhost:8080/api/usersMongo
+Content-Type: application/json
+{
+  "first_name": "Alvaro",
+  "last_name": "Vargas",
+  "age": 30,
+  "address": "Washington Beltran",
+  "gender": "masculino",
+  "email": "alvaro40992@gmail.com"
+}
+### POST A PRODUCT MONGO
+POST http://localhost:8080/api/productsMongo/
+Content-Type: application/json
+
+{
+  "title": "Iphone 14 Pro Max",
+  "description": "Descripción Iphone 14 Pro Max",
+  "price": 1500,
+  "stock": 10,
+  "category": "productos",
+  "thumbnail": "url",
+  "status": true
+}
+
+### PUT A USER MONGO
+PUT http://localhost:8080/api/usersMongo/64507de85b25082d75475e82
+Content-Type: application/json
+
+{
+  "first_name": "Ana Paula",
+  "last_name": "Martinez",
+  "age": 27,
+  "address": "Washington Beltran",
+  "gender": "masculino",
+  "email": "anamartinezot17@gmail.com"
+}
+
+### PUT A PRODUCT MONGO
+PUT http://localhost:8080/api/productsMongo/64508732a096ed9179c18fbc
+Content-Type: application/json
+
+{
+  "title": "Iphone 13 Pro Max",
+  "description": "Descripción Iphone 13 Pro Max",
+  "precio": 900,
+  "stock": 10,
+}
+
+### DELETE A USER MONGO
+DELETE http://localhost:8080/api/usersMongo/64507cfaf28ecee4f0271853
+
+### DELETE A PRODUCT MONGO
+DELETE http://localhost:8080/api/productsMongo/
