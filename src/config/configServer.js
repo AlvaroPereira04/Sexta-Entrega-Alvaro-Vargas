@@ -1,6 +1,6 @@
 const {connect} = require('mongoose')
 
-const url = "mongodb+srv://AlvaroVargas:AlvaroV04@comision39750.mongodb.net/Ecommerce?retryWrites=true&w=majority"
+const url = "mongodb+srv://alvaro40992:carbonero1891@cluster0.pgtgcex.mongodb.net/"
 
 module.exports = {
   connectDB: ()=>{
